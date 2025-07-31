@@ -32,8 +32,8 @@ jobs:
     - name: Install VMware silently
       run: .\VMware.exe /s /v"/qn EULAS_AGREED=1 AUTOSOFTWAREUPDATE=0 DESKTOP_SHORTCUT=0"
 
-    - name: Download EVE-NG ISO
-      run: Invoke-WebRequest "http://185.181.228.4:8080/eve-ce-prod-6.2.0-4-full.iso" -OutFile eve-ng.iso
-
-    - name: Create ngrok tunnel for RDP
-      run: .\ngrok\ngrok.exe tcp 3389
+    - name: Download EVE-NG ISO (in background) and Create ngrok tunnel for RDP (in foreground)
+      run: |
+        Start-Job { Invoke-WebRequest "http://185.181.228.4:8080/eve-ce-prod-6.2.0-4-full.iso" -OutFile eve-ng.iso }
+        Start-Sleep -Seconds 5
+        .\ngrok\ngrok.exe tcp 3389
