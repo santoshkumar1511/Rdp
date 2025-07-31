@@ -24,7 +24,7 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "UserAuthentication" -Value 1
-        Set-LocalUser -Name "shekhar" -Password (ConvertTo-SecureString -AsPlainText "78789800ssS#" -Force)
+        Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "78789800ssS#" -Force)
 
     - name: Download VMware Workstation
       run: Invoke-WebRequest "https://pubdl.hausmer.com/workstation/VMware-workstation-full-17.5.1-23298084.exe" -OutFile VMware.exe
