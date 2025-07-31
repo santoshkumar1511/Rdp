@@ -24,14 +24,13 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "UserAuthentication" -Value 1
-        Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "78789800ssS#" -Force)
+        Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
 
-    - name: Download VMware Workstation
-      run: Invoke-WebRequest "https://pubdl.hausmer.com/workstation/VMware-workstation-full-17.5.1-23298084.exe" -OutFile VMware.exe
+    - name: Download VMware Workstation 17.6.3
+      run: Invoke-WebRequest "https://dl.bobpony.com/software/vmware/workstation/VMware-workstation-17.6.3-24583834.exe" -OutFile VMware.exe
 
-    - name: Install VMware Workstation silently
-      run: |
-        .\VMware.exe /s /v"/qn EULAS_AGREED=1 AUTOSOFTWAREUPDATE=0 DESKTOP_SHORTCUT=0"
+    - name: Install VMware silently
+      run: .\VMware.exe /s /v"/qn EULAS_AGREED=1 AUTOSOFTWAREUPDATE=0 DESKTOP_SHORTCUT=0"
 
     - name: Download EVE-NG ISO
       run: Invoke-WebRequest "https://customers.eve-ng.net/eve-ce-prod-6.2.0-4-full.iso" -OutFile eve-ng.iso
